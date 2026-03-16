@@ -47,7 +47,7 @@ PC0   PC1
 
 Topology screenshot:
 
-➡️ [View Topology](Screenshots/01_lab_toplology.png)
+➡️ [View Topology](Screenshots/01_lab_toplolgy.png)
 
 ---
 
