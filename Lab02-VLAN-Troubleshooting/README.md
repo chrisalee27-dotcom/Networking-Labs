@@ -1,7 +1,5 @@
 # Lab 02 — VLAN Troubleshooting
 
-<div align="right">
-
 | Lab Info | |
 |---|---|
 | Lab | 02 |
