@@ -1,7 +1,5 @@
 # Lab 03 — Trunk Network Outage
 
-<div align="right">
-
 | Lab Info | |
 |---|---|
 | Lab | 03 |
