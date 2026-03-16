@@ -27,7 +27,8 @@ Devices used:
 * 2 PCs
 * Cisco Packet Tracer
 
-![Topology](../Screenshots/01_add_nodes.png)
+📸 Screenshot
+[View Network Topology](../Screenshots/01_add_nodes.png)
 
 ---
 
@@ -37,7 +38,8 @@ All devices were connected using copper straight-through cables.
 
 Router → Switch → PCs
 
-![Connections](../Screenshots/02_connect.png)
+📸 Screenshot
+[View Device Connections](../Screenshots/02_connect.png)
 
 ---
 
@@ -50,7 +52,8 @@ enable
 configure terminal
 ```
 
-![Router CLI](../Screenshots/03_enable.png)
+📸 Screenshot
+[View Router CLI](../Screenshots/03_enable.png)
 
 ---
 
@@ -63,7 +66,8 @@ interface gigabitethernet0/0
 no shutdown
 ```
 
-![Router Interface](../Screenshots/04_assign_ip.png)
+📸 Screenshot
+[View Router Interface Configuration](../Screenshots/04_assign_ip.png)
 
 ---
 
@@ -85,7 +89,8 @@ Subnet Mask: 255.255.255.0
 Gateway: 192.168.20.1
 ```
 
-![PC IP Config](../Screenshots/05_desktop_ip_config.png)
+📸 Screenshot
+[View PC IP Configuration](../Screenshots/05_desktop_ip_config.png)
 
 ---
 
@@ -93,7 +98,8 @@ Gateway: 192.168.20.1
 
 Before VLAN segmentation, devices were able to communicate.
 
-![Initial Ping](../Screenshots/06_ping_connection_check.png)
+📸 Screenshot
+[View Initial Ping Test](../Screenshots/06_ping_connection_check.png)
 
 ---
 
@@ -109,7 +115,8 @@ vlan 20
 name SUPPORT
 ```
 
-![Create VLANs](../Screenshots/07_create_vlan10_vlan20.png)
+📸 Screenshot
+[View VLAN Creation](../Screenshots/07_create_vlan10_vlan20.png)
 
 ---
 
@@ -127,7 +134,8 @@ switchport mode access
 switchport access vlan 20
 ```
 
-![Assign VLAN Ports](../Screenshots/08_assign_pc_vlan.png)
+📸 Screenshot
+[View VLAN Port Assignment](../Screenshots/08_assign_pc_vlan.png)
 
 ---
 
@@ -135,9 +143,10 @@ switchport access vlan 20
 
 After VLAN segmentation, devices in different VLANs could no longer communicate.
 
-This behavior is expected because VLANs isolate Layer 2 traffic.
+This is expected behavior because VLANs isolate Layer 2 traffic.
 
-![Ping Failure](../Screenshots/09_ping_fails_after_vlan.png)
+📸 Screenshot
+[View Ping Failure](../Screenshots/09_ping_fails_after_vlan.png)
 
 ---
 
@@ -147,7 +156,8 @@ This behavior is expected because VLANs isolate Layer 2 traffic.
 show vlan brief
 ```
 
-![Show VLAN](../Screenshots/10_show_vlan_brief.png)
+📸 Screenshot
+[View VLAN Verification](../Screenshots/10_show_vlan_brief.png)
 
 ---
 
@@ -160,13 +170,14 @@ interface GigabitEthernet0/1
 switchport mode trunk
 ```
 
-![Trunk Port](../Screenshots/12_convert_switch_port_trunk.png)
+📸 Screenshot
+[View Trunk Configuration](../Screenshots/12_convert_switch_port_trunk.png)
 
 ---
 
 # Step 11 — Configure Router Subinterfaces
 
-Router subinterfaces were created for VLAN routing.
+Router subinterfaces were created to support inter-VLAN routing.
 
 ```
 interface GigabitEthernet0/0.10
@@ -178,7 +189,8 @@ encapsulation dot1Q 20
 ip address 192.168.20.1 255.255.255.0
 ```
 
-![Router Subinterfaces](../Screenshots/13_configure_router_subinterface.png)
+📸 Screenshot
+[View Router Subinterface Configuration](../Screenshots/13_configure_router_subinterface.png)
 
 ---
 
@@ -191,7 +203,8 @@ Several troubleshooting steps were performed during configuration:
 * Confirmed trunk configuration
 * Corrected router interface configuration
 
-![Troubleshooting](../Screenshots/16_isolate_router_setup_problem.png)
+📸 Screenshot
+[View Troubleshooting Example](../Screenshots/16_isolate_router_setup_problem.png)
 
 ---
 
@@ -201,15 +214,17 @@ After correcting the configuration, inter-VLAN routing was successful.
 
 Devices in VLAN10 and VLAN20 were able to communicate.
 
-![Successful Ping](../Screenshots/21_ping_works.png)
+📸 Screenshot
+[View Successful Ping](../Screenshots/21_ping_works.png)
 
-![Inter VLAN Routing Confirmed](../Screenshots/22_inter_vlan_routing_confirmed.png)
+📸 Screenshot
+[View Inter-VLAN Routing Confirmation](../Screenshots/22_inter_vlan_routing_confirmed.png)
 
 ---
 
 # Networking Concepts Demonstrated
 
-This lab demonstrates several important networking fundamentals:
+This lab demonstrates several fundamental networking concepts:
 
 * VLAN segmentation
 * Access ports
@@ -217,13 +232,13 @@ This lab demonstrates several important networking fundamentals:
 * 802.1Q tagging
 * Router-on-a-Stick
 * Inter-VLAN routing
-* Network troubleshooting
+* Network troubleshooting methodology
 
 ---
 
 # Commands Used
 
-Switch
+### Switch
 
 ```
 show vlan brief
@@ -231,7 +246,7 @@ show running-config
 show interfaces trunk
 ```
 
-Router
+### Router
 
 ```
 show ip interface brief
@@ -248,3 +263,12 @@ show running-config
 * Router subinterfaces
 * Network troubleshooting
 * Cisco Packet Tracer simulation
+
+---
+
+# Conclusion
+
+This lab demonstrates how VLAN segmentation isolates network traffic and how **Router-on-a-Stick routing enables communication between VLANs**.
+
+The troubleshooting process reinforced the importance of verifying trunk configuration, router interfaces, and VLAN assignments when diagnosing network connectivity issues.
+
