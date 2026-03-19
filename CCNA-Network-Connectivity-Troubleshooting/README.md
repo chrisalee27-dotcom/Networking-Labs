@@ -1,6 +1,6 @@
-# 🔧 Intermittent Network Connectivity Troubleshooting
+# 🔧 Network Connectivity Troubleshooting (Static Routing)
 
-### 📡 Static Routing Lab | Cisco Packet Tracer
+### 📡 CCNA Lab | Cisco Packet Tracer
 
 <p align="right">
   <b>🧑‍💻 Christopher Lee</b><br>
@@ -11,13 +11,13 @@
 
 ## 📌 Overview
 
-This lab simulates a real-world troubleshooting scenario where two hosts are unable to communicate due to multiple routing misconfigurations across routers.
+This lab simulates a real-world troubleshooting scenario where two hosts are unable to communicate due to routing misconfigurations across multiple routers.
 
 The objective was to:
 
-* Diagnose intermittent connectivity issues
+* Diagnose a complete loss of connectivity
 * Analyze routing tables using Cisco CLI
-* Identify incorrect static routes
+* Identify incorrect and missing static routes
 * Restore full end-to-end connectivity
 
 ---
@@ -38,18 +38,23 @@ The objective was to:
 
 ## 🚨 Problem
 
-Initial ping results showed intermittent connectivity:
+Initial testing showed **no connectivity** between PC1 and PC2:
 
 [View Initial Ping Failure](screenshots/01.png)
 
-```bash
-Reply from 192.168.3.1
+```bash id="n2x4t1"
+Request timed out
 Request timed out
 Request timed out
 Request timed out
 
-Packets: Sent = 4, Received = 1, Lost = 3 (75% loss)
+Packets: Sent = 4, Received = 0, Lost = 4 (100% loss)
 ```
+
+This indicated:
+
+* Complete communication failure
+* Likely routing issue between networks
 
 ---
 
@@ -61,7 +66,9 @@ Packets: Sent = 4, Received = 1, Lost = 3 (75% loss)
 
 [View R1 Incorrect Route](screenshots/02.png)
 
-```bash
+Incorrect next-hop configured:
+
+```bash id="v5y9k2"
 ip route 192.168.3.0 255.255.255.0 192.168.12.3
 ```
 
@@ -69,7 +76,7 @@ ip route 192.168.3.0 255.255.255.0 192.168.12.3
 
 [View R1 Fix](screenshots/03.png)
 
-```bash
+```bash id="g7m3q8"
 no ip route 192.168.3.0 255.255.255.0 192.168.12.3
 ip route 192.168.3.0 255.255.255.0 192.168.12.2
 ```
@@ -84,7 +91,9 @@ ip route 192.168.3.0 255.255.255.0 192.168.12.2
 
 [View R2 Incorrect Route](screenshots/05.png)
 
-```bash
+Incorrect static route using exit interface:
+
+```bash id="c8d1f4"
 ip route 192.168.3.0 255.255.255.0 g0/0
 ```
 
@@ -92,7 +101,7 @@ ip route 192.168.3.0 255.255.255.0 g0/0
 
 [View R2 Fix](screenshots/06.png)
 
-```bash
+```bash id="u4r6k9"
 no ip route 192.168.3.0 255.255.255.0 g0/0
 ip route 192.168.3.0 255.255.255.0 192.168.13.3
 ```
@@ -109,14 +118,14 @@ ip route 192.168.3.0 255.255.255.0 192.168.13.3
 
 Issues identified:
 
-* Interface misconfiguration
-* Missing static route
+* Interface not properly configured
+* Missing static route to remote network
 
 #### ✅ Fix Interface
 
 [View R3 Interface Fix](screenshots/09.png)
 
-```bash
+```bash id="p9w2e6"
 interface g0/0
 ip address 192.168.13.3 255.255.255.0
 no shutdown
@@ -126,7 +135,7 @@ no shutdown
 
 [View R3 Route Fix](screenshots/10.png)
 
-```bash
+```bash id="z3x7c1"
 ip route 192.168.1.0 255.255.255.0 192.168.13.2
 ```
 
@@ -136,11 +145,23 @@ ip route 192.168.1.0 255.255.255.0 192.168.13.2
 
 ---
 
+## 🧩 Root Cause
+
+Multiple routing misconfigurations prevented packets from reaching the destination network:
+
+* Incorrect next-hop on R1
+* Improper static route configuration on R2
+* Missing route and interface issue on R3
+
+These combined issues resulted in complete loss of connectivity.
+
+---
+
 ## ✅ Final Verification
 
 [View Successful Ping](screenshots/12.png)
 
-```bash
+```bash id="m6n8q2"
 Packets: Sent = 4, Received = 4, Lost = 0 (0% loss)
 ```
 
@@ -150,23 +171,18 @@ Packets: Sent = 4, Received = 4, Lost = 0 (0% loss)
 
 ## 🧠 Key Takeaways
 
-* Incorrect static routes can cause **intermittent packet loss**
-* Routers may perform **load balancing across invalid paths**
-* Always prefer next-hop IP over exit interface
-* Use `show ip route` for validation
-* Intermittent ping = 🚩 routing issue indicator
+* Static routes must use correct next-hop IP addresses
+* Exit interfaces can cause issues on multi-access networks
+* Always verify routing tables with `show ip route`
+* Layered troubleshooting is critical in multi-router environments
 
 ---
 
 ## 💡 What I Learned
 
-Initially, the issue appeared to be ARP-related due to partial packet success. However, repeated inconsistent ping results revealed a deeper routing issue.
+This lab reinforced the importance of a structured troubleshooting approach.
 
-This lab reinforced:
-
-* Structured troubleshooting methodology
-* Importance of verifying routing tables
-* How routers handle multiple equal-cost paths
+By systematically verifying each router’s configuration and routing table, I was able to isolate and resolve multiple issues contributing to the outage.
 
 ---
 
@@ -189,7 +205,7 @@ This lab reinforced:
 
 ## 📂 Project Structure
 
-```bash
+```bash id="q2k7w9"
 screenshots/
 ├── 01.png
 ├── 02.png
