@@ -24,7 +24,7 @@ The objective was to:
 
 ## 🖥️ Network Topology
 
-[Topology](../Screenshots/01_topology_ping_verify_outage.png)
+![Topology](./01_topology_ping_verify_outage.png)
 
 * PC1 → R1 → R2 → R3 → PC2
 * Networks:
@@ -40,7 +40,7 @@ The objective was to:
 
 Initial ping results showed intermittent connectivity:
 
-[Initial Ping Failure](../01_topology_ping_verify_outage.png)
+![Initial Ping Failure](./01_topology_ping_verify_outage.png)
 
 ```bash
 Reply from 192.168.3.1
@@ -64,7 +64,7 @@ This indicated:
 
 ### 🔹 R1 Misconfiguration
 
-[R1 Incorrect Route](../Screenshots/02_R1_wrong_hop.png)
+![R1 Incorrect Route](./02_R1_wrong_hop.png)
 
 Incorrect next-hop configured:
 
@@ -74,7 +74,7 @@ ip route 192.168.3.0 255.255.255.0 192.168.12.3
 
 #### ✅ Fix
 
-[R1 Fix](../Screenshots/03_correct_hop_error.png)
+![R1 Fix](./03_correct_hop_error.png)
 
 ```bash
 no ip route 192.168.3.0 255.255.255.0 192.168.12.3
@@ -83,13 +83,13 @@ ip route 192.168.3.0 255.255.255.0 192.168.12.2
 
 #### ✔ Verification
 
-[R1 Verified](./04_verify_R1_correct_ip_route.png)
+![R1 Verified](./04_verify_R1_correct_ip_route.png)
 
 ---
 
 ### 🔹 R2 Misconfiguration
 
-[R2 Incorrect Route](../Screenshots/05_R2_connected_wrong_interface.png)
+![R2 Incorrect Route](./05_R2_connected_wrong_interface.png)
 
 Used exit interface instead of next-hop:
 
@@ -99,7 +99,7 @@ ip route 192.168.3.0 255.255.255.0 g0/0
 
 #### ✅ Fix
 
-[R2 Fix](../Screenshots/06_correct_ip_route.png)
+![R2 Fix](./06_correct_ip_route.png)
 
 ```bash
 no ip route 192.168.3.0 255.255.255.0 g0/0
@@ -108,13 +108,13 @@ ip route 192.168.3.0 255.255.255.0 192.168.13.3
 
 #### ✔ Verification
 
-[R2 Verified](../Screenshots/07_verify_R2_correct_route.png)
+![R2 Verified](./07_verify_R2_correct_route.png)
 
 ---
 
 ### 🔹 R3 Misconfiguration
 
-[R3 Issue](../Screenshots/08_missing_static_route_interface_typo.png)
+![R3 Issue](./08_missing_static_route_interface_typo.png)
 
 Issues identified:
 
@@ -123,7 +123,7 @@ Issues identified:
 
 #### ✅ Fix Interface
 
-[R3 Interface Fix](../Screenshots/09_fix_interface_error.png)
+![R3 Interface Fix](./09_fix_interface_error.png)
 
 ```bash
 interface g0/0
@@ -133,7 +133,7 @@ no shutdown
 
 #### ✅ Add Static Route
 
-[R3 Route Fix](../Screenshots/10_add_static_route.png)
+![R3 Route Fix](./10_add_static_route.png)
 
 ```bash
 ip route 192.168.1.0 255.255.255.0 192.168.13.2
@@ -141,13 +141,13 @@ ip route 192.168.1.0 255.255.255.0 192.168.13.2
 
 #### ✔ Verification
 
-[R3 Verified](../Screenshots/11_verify_R3_corrections.png)
+![R3 Verified](./11_verfy R3_corrections.png)
 
 ---
 
 ## ✅ Final Verification
 
-[Successful Ping](../Screenshots/12_ping_verifies_connection.png)
+![Successful Ping](./12_ping_verifies_connection.png)
 
 ```bash
 Packets: Sent = 4, Received = 4, Lost = 0 (0% loss)
