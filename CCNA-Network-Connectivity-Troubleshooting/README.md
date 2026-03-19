@@ -22,7 +22,7 @@ The objective was to:
 
 ## Network Topology
 
-![Network Topology](01_topology_ping_verify_outage.png)
+[Network Topology](01_topology_ping_verify_outage.png)
 
 - PC1 -> R1 -> R2 -> R3 -> PC2
 - Networks used:
@@ -37,7 +37,7 @@ The objective was to:
 
 Initial testing from PC1 to PC2 showed intermittent packet loss.
 
-![Initial Connectivity Failure](01_topology_ping_verify_outage.png)
+[Initial Connectivity Failure](01_topology_ping_verify_outage.png)
 
 Example result:
 
