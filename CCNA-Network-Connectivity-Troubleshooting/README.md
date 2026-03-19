@@ -24,7 +24,7 @@ The objective was to:
 
 ## 🖥️ Network Topology
 
-![Topology](./01_topology_ping_verify_outage.png)
+![Topology](screenshots/01.png)
 
 * PC1 → R1 → R2 → R3 → PC2
 * Networks:
@@ -40,7 +40,7 @@ The objective was to:
 
 Initial ping results showed intermittent connectivity:
 
-![Initial Ping Failure](./01_topology_ping_verify_outage.png)
+![Initial Ping Failure](screenshots/01.png)
 
 ```bash
 Reply from 192.168.3.1
@@ -51,11 +51,6 @@ Request timed out
 Packets: Sent = 4, Received = 1, Lost = 3 (75% loss)
 ```
 
-This indicated:
-
-* Partial connectivity
-* Possible routing inconsistency
-
 ---
 
 ## 🔍 Investigation & Troubleshooting
@@ -64,9 +59,7 @@ This indicated:
 
 ### 🔹 R1 Misconfiguration
 
-![R1 Incorrect Route](./02_R1_wrong_hop.png)
-
-Incorrect next-hop configured:
+![R1 Incorrect Route](screenshots/02.png)
 
 ```bash
 ip route 192.168.3.0 255.255.255.0 192.168.12.3
@@ -74,7 +67,7 @@ ip route 192.168.3.0 255.255.255.0 192.168.12.3
 
 #### ✅ Fix
 
-![R1 Fix](./03_correct_hop_error.png)
+![R1 Fix](screenshots/03.png)
 
 ```bash
 no ip route 192.168.3.0 255.255.255.0 192.168.12.3
@@ -83,15 +76,13 @@ ip route 192.168.3.0 255.255.255.0 192.168.12.2
 
 #### ✔ Verification
 
-![R1 Verified](./04_verify_R1_correct_ip_route.png)
+![R1 Verified](screenshots/04.png)
 
 ---
 
 ### 🔹 R2 Misconfiguration
 
-![R2 Incorrect Route](./05_R2_connected_wrong_interface.png)
-
-Used exit interface instead of next-hop:
+![R2 Incorrect Route](screenshots/05.png)
 
 ```bash
 ip route 192.168.3.0 255.255.255.0 g0/0
@@ -99,7 +90,7 @@ ip route 192.168.3.0 255.255.255.0 g0/0
 
 #### ✅ Fix
 
-![R2 Fix](./06_correct_ip_route.png)
+![R2 Fix](screenshots/06.png)
 
 ```bash
 no ip route 192.168.3.0 255.255.255.0 g0/0
@@ -108,13 +99,13 @@ ip route 192.168.3.0 255.255.255.0 192.168.13.3
 
 #### ✔ Verification
 
-![R2 Verified](./07_verify_R2_correct_route.png)
+![R2 Verified](screenshots/07.png)
 
 ---
 
 ### 🔹 R3 Misconfiguration
 
-![R3 Issue](./08_missing_static_route_interface_typo.png)
+![R3 Issue](screenshots/08.png)
 
 Issues identified:
 
@@ -123,7 +114,7 @@ Issues identified:
 
 #### ✅ Fix Interface
 
-![R3 Interface Fix](./09_fix_interface_error.png)
+![R3 Interface Fix](screenshots/09.png)
 
 ```bash
 interface g0/0
@@ -133,7 +124,7 @@ no shutdown
 
 #### ✅ Add Static Route
 
-![R3 Route Fix](./10_add_static_route.png)
+![R3 Route Fix](screenshots/10.png)
 
 ```bash
 ip route 192.168.1.0 255.255.255.0 192.168.13.2
@@ -141,13 +132,13 @@ ip route 192.168.1.0 255.255.255.0 192.168.13.2
 
 #### ✔ Verification
 
-![R3 Verified](./11_verfy R3_corrections.png)
+![R3 Verified](screenshots/11.png)
 
 ---
 
 ## ✅ Final Verification
 
-![Successful Ping](./12_ping_verifies_connection.png)
+![Successful Ping](screenshots/12.png)
 
 ```bash
 Packets: Sent = 4, Received = 4, Lost = 0 (0% loss)
@@ -161,65 +152,4 @@ Packets: Sent = 4, Received = 4, Lost = 0 (0% loss)
 
 * Incorrect static routes can cause **intermittent packet loss**
 * Routers may perform **load balancing across invalid paths**
-* Always prefer:
-
-  * ✔ Next-hop IP over exit interface (on Ethernet)
-* Use:
-
-  * `show ip route` for validation
-* Intermittent ping = 🚩 likely routing issue
-
----
-
-## 💡 What I Learned
-
-Initially, the issue appeared to be ARP-related due to partial packet success. However, repeated inconsistent ping results revealed a deeper routing issue.
-
-This lab reinforced:
-
-* Structured troubleshooting methodology
-* Importance of verifying routing tables
-* How routers handle multiple equal-cost paths
-
----
-
-## 🚀 Skills Demonstrated
-
-* Network troubleshooting
-* Static routing configuration
-* Cisco IOS CLI
-* Routing table analysis
-* Problem isolation & resolution
-
----
-
-## 🛠️ Tools Used
-
-* Cisco Packet Tracer
-* Cisco IOS CLI
-
----
-
-## 📂 Project Structure
-
-```bash
-01_topology_ping_verify_outage.png
-02_R1_wrong_hop.png
-03_correct_hop_error.png
-04_verify_R1_correct_ip_route.png
-05_R2_connected_wrong_interface.png
-06_correct_ip_route.png
-07_verify_R2_correct_route.png
-08_missing_static_route_interface_typo.png
-09_fix_interface_error.png
-10_add_static_route.png
-11_verfy R3_corrections.png
-12_ping_verifies_connection.png
-```
-
----
-
-## 👨‍💻 Author
-
-Christopher Lee
-Aspiring Network Engineer | Cybersecurity Student
+* Always pref*
