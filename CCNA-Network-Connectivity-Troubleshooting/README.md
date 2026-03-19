@@ -1,4 +1,4 @@
-# 🔧 Intermittent Network Connectivity Troubleshooting
+# 🔧 Network Connectivity Troubleshooting
 
 ### 📡 Static Routing Lab | Cisco Packet Tracer
 
@@ -24,7 +24,7 @@ The objective was to:
 
 ## 🖥️ Network Topology
 
-![Topology](screenshots/01.png)
+[View Topology](screenshots/01.png)
 
 * PC1 → R1 → R2 → R3 → PC2
 * Networks:
@@ -40,7 +40,7 @@ The objective was to:
 
 Initial ping results showed intermittent connectivity:
 
-![Initial Ping Failure](screenshots/01.png)
+[View Initial Ping Failure](screenshots/01.png)
 
 ```bash
 Reply from 192.168.3.1
@@ -59,7 +59,7 @@ Packets: Sent = 4, Received = 1, Lost = 3 (75% loss)
 
 ### 🔹 R1 Misconfiguration
 
-![R1 Incorrect Route](screenshots/02.png)
+[View R1 Incorrect Route](screenshots/02.png)
 
 ```bash
 ip route 192.168.3.0 255.255.255.0 192.168.12.3
@@ -67,7 +67,7 @@ ip route 192.168.3.0 255.255.255.0 192.168.12.3
 
 #### ✅ Fix
 
-![R1 Fix](screenshots/03.png)
+[View R1 Fix](screenshots/03.png)
 
 ```bash
 no ip route 192.168.3.0 255.255.255.0 192.168.12.3
@@ -76,80 +76,10 @@ ip route 192.168.3.0 255.255.255.0 192.168.12.2
 
 #### ✔ Verification
 
-![R1 Verified](screenshots/04.png)
+[View R1 Verification](screenshots/04.png)
 
 ---
 
 ### 🔹 R2 Misconfiguration
 
-![R2 Incorrect Route](screenshots/05.png)
-
-```bash
-ip route 192.168.3.0 255.255.255.0 g0/0
-```
-
-#### ✅ Fix
-
-![R2 Fix](screenshots/06.png)
-
-```bash
-no ip route 192.168.3.0 255.255.255.0 g0/0
-ip route 192.168.3.0 255.255.255.0 192.168.13.3
-```
-
-#### ✔ Verification
-
-![R2 Verified](screenshots/07.png)
-
----
-
-### 🔹 R3 Misconfiguration
-
-![R3 Issue](screenshots/08.png)
-
-Issues identified:
-
-* Interface misconfiguration
-* Missing static route
-
-#### ✅ Fix Interface
-
-![R3 Interface Fix](screenshots/09.png)
-
-```bash
-interface g0/0
-ip address 192.168.13.3 255.255.255.0
-no shutdown
-```
-
-#### ✅ Add Static Route
-
-![R3 Route Fix](screenshots/10.png)
-
-```bash
-ip route 192.168.1.0 255.255.255.0 192.168.13.2
-```
-
-#### ✔ Verification
-
-![R3 Verified](screenshots/11.png)
-
----
-
-## ✅ Final Verification
-
-![Successful Ping](screenshots/12.png)
-
-```bash
-Packets: Sent = 4, Received = 4, Lost = 0 (0% loss)
-```
-
-✔ Full connectivity restored between PC1 and PC2
-
----
-
-## 🧠 Key Takeaways
-
-* Incorrect static routes can cause **intermittent packet loss**
-* Routers may perform **load balancing across invalid paths**
-* Always pref*
+[View R2 In]()
