@@ -70,9 +70,6 @@ interface g0/1
 switchport mode trunk
 switchport trunk allowed vlan 10,20,30
 switchport trunk native vlan 1002
-```
-
-[![SW2 Trunk G1](screenshots/03_sw2_g1_trunk_native_vlan_vlan30.png)](screenshots/03_sw2_g1_trunk_native_vlan_vlan30.png)
 
 ---
 
