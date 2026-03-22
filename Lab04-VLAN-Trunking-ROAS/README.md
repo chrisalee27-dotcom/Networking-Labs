@@ -8,17 +8,7 @@ This lab demonstrates **Inter-VLAN Routing using Router-on-a-Stick (ROAS)** acro
 
 ## 🖥️ Topology
 
-![Topology](screenshots/01_Topology.png)
-
----
-
-## 🧩 VLAN Design
-
-| VLAN    | Network       |
-| ------- | ------------- |
-| VLAN 10 | 10.0.0.0/26   |
-| VLAN 20 | 10.0.0.64/26  |
-| VLAN 30 | 10.0.0.128/26 |
+[![Topology](screenshots/01_Topology.png)](screenshots/01_Topology.png)
 
 ---
 
@@ -26,7 +16,7 @@ This lab demonstrates **Inter-VLAN Routing using Router-on-a-Stick (ROAS)** acro
 
 ### SW1
 
-```bash id="a1b2c3"
+```bash id="a1111"
 interface range f0/1-2
 switchport mode access
 switchport access vlan 10
@@ -36,14 +26,14 @@ switchport mode access
 switchport access vlan 30
 ```
 
-![SW1 VLAN10](screenshots/02_create_vlan10_sw1.png)
-![SW1 VLAN30](screenshots/02_create_vlan30_sw1.png)
+[![SW1 VLAN10](screenshots/02_create_vlan10_sw1.png)](screenshots/02_create_vlan10_sw1.png)
+[![SW1 VLAN30](screenshots/02_create_vlan30_sw1.png)](screenshots/02_create_vlan30_sw1.png)
 
 ---
 
 ### SW2
 
-```bash id="d4e5f6"
+```bash id="b2222"
 interface range f0/2-3
 switchport mode access
 switchport access vlan 10
@@ -53,8 +43,8 @@ switchport mode access
 switchport access vlan 20
 ```
 
-![SW2 VLAN10](screenshots/02_create_vlan10_sw2.png)
-![SW2 VLAN20](screenshots/02_create_vlan20_sw2.png)
+[![SW2 VLAN10](screenshots/02_create_vlan10_sw2.png)](screenshots/02_create_vlan10_sw2.png)
+[![SW2 VLAN20](screenshots/02_create_vlan20_sw2.png)](screenshots/02_create_vlan20_sw2.png)
 
 ---
 
@@ -62,37 +52,57 @@ switchport access vlan 20
 
 ### SW1
 
-```bash id="g7h8i9"
+```bash id="c3333"
 interface g0/1
 switchport mode trunk
 switchport trunk allowed vlan 10,20,30
 switchport trunk native vlan 1002
 ```
 
-![SW1 Trunk](screenshots/03_sw1_g1_trunk_native_vlan.png)
+[![SW1 Trunk](screenshots/03_sw1_g1_trunk_native_vlan.png)](screenshots/03_sw1_g1_trunk_native_vlan.png)
 
 ---
 
 ### SW2 (to SW1)
 
-```bash id="j10k11"
+```bash id="d4444"
 interface g0/1
 switchport mode trunk
 switchport trunk allowed vlan 10,20,30
 switchport trunk native vlan 1002
 ```
 
-![SW2 Trunk G1](screenshots/03_sw2_g1_trunk_native_vlan_vlan30.png)
+[![SW2 Trunk G1](screenshots/03_sw2_g1_trunk_native_vlan_vlan30.png)](screenshots/03_sw2_g1_trunk_native_vlan_vlan30.png)
 
 ---
 
 ### SW2 (to Router)
 
-```bash id="l12m13"
+```bash id="e5555"
 interface g0/2
 switchport mode trunk
 switchport trunk allowed vlan 10,20,30
 switchport trunk native vlan 1002
 ```
 
-![SW2 T]()
+[![SW2 Trunk G2](screenshots/03_sw2_g2_trunk_native_vlan_.png)](screenshots/03_sw2_g2_trunk_native_vlan_.png)
+
+---
+
+## 🌐 Step 3 – Router-on-a-Stick
+
+```bash id="f6666"
+interface g0/0
+no shutdown
+
+interface g0/0.10
+encapsulation dot1q 10
+ip address 10.0.0.62 255.255.255.192
+
+interface g0/0.20
+encapsulation dot1q 20
+ip address 10.0.0.126 255.255.255.192
+
+interface g0/0.30
+encapsula
+```
