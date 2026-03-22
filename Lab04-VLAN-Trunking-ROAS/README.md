@@ -104,5 +104,32 @@ encapsulation dot1q 20
 ip address 10.0.0.126 255.255.255.192
 
 interface g0/0.30
-encapsula
+encapsulation dot1q 30
+ip address 10.0.0.190 255.255.255.192
 ```
+
+[![R1 No Shut](screenshots/04_r1_no_shutdown.png)](screenshots/04_r1_no_shutdown.png)
+[![ROAS](screenshots/05_roas.png)](screenshots/05_roas.png)
+
+---
+
+## 🧪 Step 4 – Connectivity Test
+
+```bash id="g7777"
+ping 10.0.0.1
+ping 10.0.0.65
+ping 10.0.0.129
+```
+
+[![Ping Test](screenshots/06_connectivity_test.png)](screenshots/06_connectivity_test.png)
+
+---
+
+## 🏁 Result
+
+✔ Full inter-VLAN connectivity achieved
+✔ ROAS working correctly
+
+---
+
+💬 *This lab reinforced trunk consistency and inter-VLAN routing fundamentals.*
